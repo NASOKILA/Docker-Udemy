@@ -1,0 +1,47 @@
+
+-------------------
+
+Images:
+
+	What is an image and what is in it and what is not in it.
+	How to find images on the web, download them and manage them.
+	
+	What is an image ?
+		An image is the app dinaries and dependencies, and
+		the metadeta to run it.
+		It is a pattern of our app.	
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

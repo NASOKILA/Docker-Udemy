@@ -1,0 +1,101 @@
+
+----------------------
+
+
+Companies will use docker for sure so we need to learn it, we cannot skip it.
+
+Docker works in containers, this tehnology came after the cloud tecchnology.
+The code runs insade the containers.
+
+Everybody can work with Docker, not just developers.
+
+DOCKER WILL BE USED BY EVERYBODY IN THE FUTURE.
+IT'S ABOUT SPEED, IT'S VERY FAST THAT'S WHY EVERIBODY WILL USE IT IN FUTURE.
+
+Develops, builds, tests, deploys, recovers faster.
+
+
+With the containers it does not matted the operatin system, it runs on all of them
+even cloud and mobile apps.
+
+
+BIG COMPANIES LIKE PayPal AND OTHERS USE DOCKER BECAUSE IT'S EASYER.
+
+
+They have a personal symbol which is a real life turtle. 
+They celebrate every year docker's birthday.
+
+Docker is open source.
+
+
+---------------------
+
+
+We will use Docker CE Community Edition that is free.
+Docker Enterprise Edition is for big enterprices, it has more features
+and it is paid.
+
+On WIndows and Mac Docker runs a virtual machine to run the containers.
+
+
+--------------------
+
+
+We have Linux containers and Windows containers, they have small deference.
+For windows we will use powershell terminal.
+
+
+---------------------
+
+
+When we open the Docker quick start icon, it starts silently a machine on 
+VirtualBox AND IT OPENS A TERMINAL WITH WHICH WE CAN CONTROL THE MACHINE IT CREATED.
+
+From there we type deferent commands.
+
+DOCKERS ACTUALLY RUNS INSADE THAT VIRTUAL MACHINE, NOT ON OUR PC.
+
+
+We will use powershell and vscode
+
+
+-----------------------
+
+
+Bind Mounting :
+	This just connects source files that we have downloaded on our machine 
+	to the docker linux machine.
+	
+	This can be done with the docker toolbox but we need the files to be
+	in our C:/Users/ folder.
+
+	Bind mounting does not work for databases, just for files with code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

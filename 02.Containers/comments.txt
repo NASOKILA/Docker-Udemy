@@ -1,0 +1,431 @@
+
+
+This section is all about containers.
+
+We will use Nginx for all the commands and operations on containers.
+Nginx is a simple web server, it will help us learn docker.
+
+
+We will learn how the containers talk to ech other.
+
+We will use the docker toolbox for our commands, from there we can talk to 
+the server.
+
+The actual server is in LINUX operating system.
+
+Commands :
+	docker             
+		//Shows all the avaliable commands, we have Managment commands and Sub commands.
+		//The commands are so much that they invented Managment commands are for better organization	
+		//docker ManagmentCommand SubCommand
+		//Example : docket container run
+
+	docker version     
+		//Shows info for the client and the server
+		//This command makes sure that we are connected to the server
+	
+	docker info        
+		//Shows info about the containers running, stopped, paused and more
+		//Shows Configuration and more
+
+
+---------------------
+
+
+Nginx server start, images vs containers, play with containers:
+	An image is the app that we want to run.
+	A container is an instance of that image, we can have many instances of the same image.
+
+
+	docker container ls 
+		// With this command we can see all running containers in the background.
+		
+	docker container ls -a   
+		//Shows all the existing containers, even the ones that are not running now
+	
+	Start a container :
+		docker conrainer run --publish 80:80 nginx
+	
+		Now the docker engine looked for a 'nginx' image and it pulled down the latest image 
+		form docker hub and it startd it as a new container for us to use.
+		
+		WHen we run a new container we get a new unique ID for it.
+		
+		The port cannot be used by another program or even another container.
+
+
+	Close a container :
+		CTRL + C closes it just in the foreground but the container 
+		keeps running on the background and we need to close it there also.
+		
+		docker container run --publish 80:80 --detach nginx
+			This command tells docker to run it in the background, we get the ID.
+
+		docker container stop ContainerID
+			This stops the actual container
+		
+
+
+	run vs start :
+		docker container run    //starts a new container
+		docker container start    //starts a already existing container
+
+
+	docker container logs CONTAINER_NAME  
+		//Every time we run this command it shows us the front log and the requests send 
+
+	docker container top CONTAINER_NAME
+		//Shows the full proccess of running the container, it shows nothing if it's not running
+
+	docker container --help 
+		//shows us all the commands that we can run for a container	
+
+
+	REMOVE CONTAINERS:
+		With 'stop' we just stop them but they still exist.
+		We can delete many containers at the same time.
+		But we cannot remove a running container, WE HAVE TO STOP IT FIRST OR FORCE IT.
+
+
+
+		docker container rm CONTAINER_ID  
+				or
+		docker container rm CONTAINER_ID1 CONTAINER_ID2 CONTAINER_ID3 
+
+
+
+		If the container is running we can force it with -f and it will be deleted
+
+	IMPORTANT :
+		WHEN SPECIFYING THE CONTAINERS ID'S WE DO NOT NEED TO WRITE ALL THE ID
+		BUT JUST ENOUGHT SO DOCKER CAN UNDERSTAND IT'S UNIQNESS, MEANING 
+		ONLY 4 OR 5 CHARACTERS IS GOO ENOUGH		
+
+
+---------------------
+
+
+What happens in the backround when we run a container ?
+	01.First of all it looks for the image that we specified like 'nginx'.
+	02.It it does not find it it will download it from the Docker Hub.
+
+
+	We can create images with deferent versions, if we do not type a
+	verion it takes the newest one by default 
+
+	03.It creates a container based on that image
+	
+	04.It gives it a virtual IP on private network
+
+	05.It works with the port, if we do not specify the port it will not do anything
+
+	06.It starts the container.
+
+
+----------------------
+
+
+What actually are containers ?
+	People compare them to Mini Virtual Machines but they are not.	
+	A container is just a proccess.
+
+
+	We can create a mongo database in a container:
+		docker container run --name mongoDB -d mongo
+
+
+-------------------
+
+
+How docker works for apps ?
+
+	Docker wraps our application in a package together with the framework,
+	plattform and host that we are using.
+
+	That package is called an 'image'.
+	
+	This process is called 'Dockarise' !!!
+	After this is done we can run our app from every machine that has docker installedd.
+	The app runs into containers, we have t ocreate an instance of that 'image'.
+
+	An image cn be  simple script and not an entire application.
+	
+	We can automate lots of things with docker like emails and many more things.
+
+	Docker is just a command terminal with an API behind it (Docker Hub).
+
+	
+
+-----------------------
+
+
+Deferent container types:
+	
+	01.Task container :
+		This container just does one thing and when it finisheds it stops.
+	02.Interactive container :
+		We can connect to it like a remote machine 
+	03.Background container : 
+		This is useful for keeping an app running, like a windows service.
+		THIS IS THE MOST USED ONE BECAUSE WE CAN RUN WEBSITES AND API'S !!!
+
+
+
+	Its fast for building testing deploying and cloud.
+	We can run it on cloud whitout paying it because docker gives us platform independance.
+	We can run many containers on one machine and they are isolated from eachother.
+	We can run any type of apps and they can communicate with eachother thru the docker network.
+	
+	When you build  new image you should share it in the docher hub.
+
+
+
+---------------------
+
+
+	There are windows, mac and linux containers for their operating systems.
+	But now with "Hyper V isolation" which uses "kernels" we can run deferentcontainers on deferent operating systems.
+	"Hyper V isolation" is wrapping the foreign component into another VM machine of the same operating system so it can run.
+	
+
+	Two apps can share the same "kernel" with the same host.
+
+
+---------------------
+
+
+
+	We can run SQL in a container
+	We can place our .net app into a ontainer very easy.
+	It can be a .nt, nodeJS, Python, go or other application.
+
+
+----------------------
+
+
+Assign variables to containers:
+	on the creation we need to specify the variable name like this :
+	... -e VAR_NAME ...
+
+
+	docker images ls  //shows all images
+	
+	There will be one image per existing container
+
+
+-----------------------
+
+
+	docker container top CONTAINER_NAME_OR_ID   
+		//shows us the proccess running insade that container
+	
+	docker container inspect CONTAINER_NAME_OR_ID
+		//shows the configuration data of that container
+		//it tells us also how did it start, it's volumes and more
+
+	docker container stats 
+		//shows us a live statistics of how each container is performing
+		//is tells us about the hard drive, the database, the Ram, CPU that the container is using
+		//it is updated each second
+		//it is good for a local machine
+		
+
+------------------------
+
+
+Getting a shell insade a container :
+
+	We will look insade a container for the first time.
+
+	To look insade a container we need ' -it ' upon creation.	
+
+	This way it use the defult terminal but we can change that by simply typing ' bash '
+	and it will use a bash terminal.
+
+	NOW WE HAVE A TERMINAL INSADE THE CONTAINER.
+	WE ARE THE root. 
+	
+	TO EXIT THE TERMINAL USE 'exit' AND IT WILL ALSO STOP THE CONTAINER
+
+	TO OPEN THE TERMINAL AGAIN WE NEED TO START IT LIKE THIS:
+		docker container start -ai NAME_OF_CONTAINER
+	
+	
+	
+
+	On creation " -i " keeps the session open for receiveing terminal input.
+		
+
+	On the insade container terminal  the ls -al command tells us 
+	where we are, here we can do anything.
+	We see all the credentials and files.
+	On that terminal we can do whatever we want, like downloading and more.
+	
+		
+		
+
+	We can create a container using the ubuntu image also.
+	And with -it we directly go insade the terminal	of that new created container.
+	It's default terminal is BASH so we do not need to specify it.
+	
+	In ubuntu the apt packege manager is to get more software and add it to the machine.
+
+	' apt-get update ' is that so we can use them.
+
+	Now we can install things with it on our container
+	apt-get install curl    //Here we install 'curl' and now when we run the container it will have it.
+
+
+	To open the terminal again after we have closed it we need :
+		docker container start -ai Ubuntu.
+	BUT WHEN WE EXIT AGAIN IT WILL STOP THE CONTAINER.
+				
+	
+
+IF WE DONT KNOW SOMETHING AWAIS USE -help.
+
+
+
+
+To see the SHELL insade a running container use the  -exec  command.	
+	docker container exec -it CONTAINER_NAME TERMINAL_NAME     //'bash' for example for terminal name
+	
+	Now we can run things or check info about the container while it's working
+	and when we exit it will keep running.
+
+
+
+
+Apline :
+	This is a linux security distribution service.
+	It very small, only 5mb in size.
+
+	docker pull alpine  // this will download the alpine image
+	
+	//if now we check the images we will have one more.
+
+
+	We can open a terminal insade the alpine, but alpine does not have
+	bash because it is to small, but it has 'sh' which is similar terminal but smaller
+
+	To install more things like 'bash' on alpine we can use 'apk'.
+
+
+
+--------------------------
+
+
+Docker networking :
+	docker containers run on indiviruals virtual networks.
+	More than one containers can communicate with eachother if they are
+	on the same virtual network.
+	
+	We can create new virtual networks
+
+	We can attach containers to more than one virtul network.
+
+	In docker networking works like this : "Batteries included, but removeble" !!!
+	
+	We can directly use the host network !!!!!!
+
+
+Drivers :
+	There are many drivers for ocker with deferent abilities.
+
+
+
+	
+Ports :
+	docker container port webhost  
+		//This shows us which host port is redirecting to which port in our container
+	
+	we cannot start two containers that run on the same HOST port.
+	but they can have same container ports as long as the HOST port is deferent.
+
+
+	
+IMORTANT:
+	The container does not use the same IP address as the host
+
+	docker container inspect --format "{{ .NetworkSettings.IPAddress}}" webhost
+		//This shows us the ip of our container
+		
+
+
+
+-------------------------
+
+
+Networks :
+
+	We can create virtual networks and inspect them.
+	We can detach networks from containers.
+	
+	EVERYTHING IS MORE PROTECTED INSADE A VIRTUAL NETWORK
+
+	docker network ls  
+		//shows all the networks
+	
+	There are 3 by default:
+		'bridge'// it's the default docker virtual network connected to the host network, 
+		'host'  // attaches the container directly to the host interface whithout using docker virtual network, 
+		'none'  // it's like a separate network on your computer.
+	
+
+	docker network inspect NAME_OF_NETWORK
+		//shows info and the containers atached to that network
+
+
+
+	We can create our own network :
+		docker network create NAME_OF_NETWORK
+		
+		by default it's using the 'bridge' driver
+
+		upon cration we ca specify the type of driver and other options to use.
+
+		
+	Assign our network to a container
+
+		docker container run --name NAME_OF_CONT --network NAME_OF_NET nginx
+
+		//Here we assign the network to the container upon creation
+
+		then if we inspect it we will see that it is using our network
+
+
+		We can connect and disconnect networks to already existing and running containers.
+			docker network connect CONT_ID NET_ID
+			docker network disconnect CONT_ID NET_ID
+			
+			A CONTAINER CAN RUN ON MANY NETWORKS AT THE SAME TIME.
+			A NETWORK CAN HAVE MANY CONTAINERS RUNNING INTO IT AT THE SAME TIME.
+		
+			with docker container inspect CONT_ID we can see the networks
+
+		EVEN IF WE INSPECT TH NETWORK WE WILL SEE THE CONTAINERS ATTACHED TO IT.
+
+
+DNS :
+	how it affects containers in custom and dfault networks.
+	DNS is for IP addresses insade containers.
+		
+	TO ENABLE DNS ON default 'bridge' network we need  --link  command
+	
+	IP addrresses cannot be trusted, avoid them when you can.
+
+	The default bridge network does not have the DNS installed.
+
+
+	DNS IS USED FROM CONTAINERS TO TALK TO EACH OTHER BECAUSE IP ADDRESSES
+	CANNOT BE TRUSTED
+
+
+
+---------------------
+
+
+
+
+
+
